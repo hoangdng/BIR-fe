@@ -1,14 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import BookDetail from "../views/BookDetail.vue";
+import TheMainContent from "../components/TheMainContent.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    redirect: "/",
+    name: "HomePage",
+    component: Home,
+    children: [
+      {
+        path: "/",
+        name: "TheMainContent",
+        component: TheMainContent
+      },
+      {
+        path: "/book/:bookId",
+        name: "BookDetail",
+        component: BookDetail
+      }
+    ]
   },
   {
     path: "/about",
