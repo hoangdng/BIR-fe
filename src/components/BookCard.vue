@@ -8,19 +8,24 @@
   >
     <div class="card-image">
       <figure class="image is-4by3">
-        <img
+        <!-- <img
           src="https://bulma.io/images/placeholders/1280x960.png"
           alt="Placeholder image"
         />
+        <img src="@/assets/images/cover/loverosie-cover.jpg" alt="Book cover" /> -->
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48">
-            <img
+            <!-- <img
               src="https://bulma.io/images/placeholders/96x96.png"
               alt="Placeholder image"
+            /> -->
+            <img
+              src="@/assets/images/author/cecelia-ahern.jpg"
+              alt="Author portrait"
             />
           </figure>
         </div>
@@ -49,4 +54,10 @@ export default {
 </script>
 <style scoped>
 @import "../assets/css/block-overflow.css";
+.card-image {
+  background-image: url("../assets/images/cover/loverosie.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 </style>

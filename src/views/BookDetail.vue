@@ -1,40 +1,50 @@
 <template>
   <section class="section is-medium">
-    <div class="container margin-top limit-width">
-      <h1 class="title font-title">
-        <span class="text-red">{{ bookDetail.title }} </span>
-        - The struggle love story from Dublin to New York
-      </h1>
-      <hr />
-    </div>
+    <div class="main-content">
+      <div class="container margin-top limit-width">
+        <h1 class="title font-title">
+          <span class="text-red">{{ bookDetail.title }} </span>
+          - The struggle love story from Dublin to New York
+        </h1>
+        <hr style="background-color: black;" />
+      </div>
 
-    <div class="container limit-width side-padding">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-96x96">
-            <img
-              src="https://bulma.io/images/placeholders/96x96.png"
-              alt="Placeholder image"
-            />
-          </figure>
-        </div>
-        <div class="media-right text-bold">
-          <p>
-            <b>Author:</b> <i>{{ bookDetail.author }}</i>
-          </p>
+      <div class="container limit-width side-padding">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-96x96">
+              <!-- <img
+                src="https://bulma.io/images/placeholders/96x96.png"
+                alt="Placeholder image"
+              /> -->
+              <img
+                src="@/assets/images/author/cecelia-ahern.jpg"
+                alt="Author portrait"
+                class="is-rounded"
+              />
+            </figure>
+          </div>
+          <div class="media-right text-bold">
+            <p>
+              <b>Author:</b> <i>{{ bookDetail.author }}</i>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="container limit-width side-padding">
-      <p class="date">February 3, 2020</p>
-    </div>
+      <div class="container limit-width side-padding">
+        <p class="date">
+          <b-icon icon="calendar-edit" size="is-small" class="mx-2" />February
+          3, 2020
+        </p>
+      </div>
 
-    <div class="container limit-width side-padding">
-      <p class="paragraph">
-        {{ bookDetail.description }}
-      </p>
-      <p class="signature">--- Trần Nguyên Hoàng ---</p>
+      <div class="container limit-width side-padding">
+        <p class="paragraph">
+          {{ bookDetail.description }}
+        </p>
+        <p class="signature">--- Trần Nguyên Hoàng ---</p>
+      </div>
     </div>
   </section>
 </template>
@@ -125,5 +135,24 @@ export default {
   float: right;
   font-family: "Dancing Script", cursive;
   font-size: 1.5em;
+}
+
+section:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  background-image: url("../assets/images/cover/loverosie.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.main-content {
+  position: relative;
 }
 </style>

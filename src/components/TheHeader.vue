@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <nav class="navbar is-fixed-top">
+    <nav class="navbar is-fixed-top px-3">
       <div class="navbar-brand">
         <router-link to="/">
           <img
             src="..\assets\images\logo-web.png"
             alt="Logo BooksIRead"
             width="250"
-            height="30"
+            style="height: 100%"
         /></router-link>
         <a
           role="button"
@@ -29,11 +29,11 @@
         </div>
 
         <div class="navbar-end">
-          <!-- <div class="navbar-item"> 
+          <div class="navbar-item">
             <a href="#" class="button is-info is-medium">
               Add a new book
             </a>
-          </div> -->
+          </div>
           <div class="navbar-item">
             <a href="#" class="button is-primary is-medium">
               Log in
