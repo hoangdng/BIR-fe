@@ -21,23 +21,31 @@
         </a>
       </div>
 
-      <div class="navbar-menu">
+      <div class="navbar-menu has-background-black">
         <div class="navbar-start">
           <div class="navbar-item">
-            <p class="main-quote">Welcome to my world of books!</p>
+            <p class="main-quote has-text-warning">
+              Welcome to my world of books!
+            </p>
           </div>
         </div>
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <a href="#" class="button is-info is-medium">
-              Add a new book
-            </a>
+            <b-button
+              tag="router-link"
+              to="/add-new-book"
+              type="is-warning"
+              size="is-medium"
+              outlined
+            >
+              Add new book
+            </b-button>
           </div>
           <div class="navbar-item">
-            <a href="#" class="button is-primary is-medium">
+            <button class="button is-warning is-medium " disabled>
               Log in
-            </a>
+            </button>
           </div>
         </div>
       </div>

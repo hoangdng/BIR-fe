@@ -11,7 +11,7 @@
 import BookCard from "@/components/BookCard.vue";
 
 export default {
-  name: "Home",
+  name: "TheMainContent",
   components: {
     BookCard
   },
