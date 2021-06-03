@@ -9,9 +9,9 @@
         <hr style="background-color: black;" />
       </div>
 
-      <div class="container limit-width side-padding">
-        <div class="media">
-          <div class="media-left">
+      <div class="container limit-width">
+        <div class="columns">
+          <div class="column is-narrow">
             <figure class="image is-96x96">
               <!-- <img
                 src="https://bulma.io/images/placeholders/96x96.png"
@@ -24,22 +24,22 @@
               />
             </figure>
           </div>
-          <div class="media-right text-bold">
-            <p>
+          <div class="column is-narrow">
+            <p class="text-bold">
               <b>Author:</b> <i>{{ bookDetail.author }}</i>
             </p>
           </div>
         </div>
       </div>
 
-      <div class="container limit-width side-padding">
+      <div class="container limit-width">
         <p class="date">
           <b-icon icon="calendar-edit" size="is-small" class="mx-2" />February
           3, 2020
         </p>
       </div>
 
-      <div class="container limit-width side-padding">
+      <div class="container limit-width">
         <p class="paragraph">
           {{ bookDetail.description }}
         </p>
@@ -88,9 +88,6 @@ export default {
   .limit-width {
     width: 50%;
   }
-  /* .side-padding {
-    padding: 0 150px;
-  } */
 }
 
 @media screen and (max-width: 1020px) {

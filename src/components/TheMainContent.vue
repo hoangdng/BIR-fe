@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content">
+  <div class="main-content px-5">
     <div class="columns is-multiline is-3">
       <BookCard v-for="book in books" :key="book.id" :book="book" />
     </div>
