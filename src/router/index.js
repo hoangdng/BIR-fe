@@ -20,7 +20,7 @@ const routes = [
         component: TheMainContent
       },
       {
-        path: "/book/:bookId",
+        path: "/book/:route",
         name: "BookDetail",
         component: BookDetail
       },

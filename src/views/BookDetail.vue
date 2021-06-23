@@ -3,8 +3,8 @@
     <div class="main-content">
       <div class="container margin-top limit-width">
         <h1 class="title font-title">
-          <span class="text-red">{{ bookDetail.title }} </span>
-          - The struggle love story from Dublin to New York
+          <span class="text-red">{{ bookDetail.bookName }} </span>
+          - {{ bookDetail.title }}
         </h1>
         <hr style="background-color: black;" />
       </div>
@@ -34,14 +34,15 @@
 
       <div class="container limit-width">
         <p class="date">
-          <b-icon icon="calendar-edit" size="is-small" class="mx-2" />February
-          3, 2020
+          <b-icon icon="calendar-edit" size="is-small" class="mx-2" />{{
+            bookDetail.releaseYear
+          }}
         </p>
       </div>
 
       <div class="container limit-width">
         <p class="paragraph">
-          {{ bookDetail.description }}
+          {{ bookDetail.myReview }}
         </p>
         <p class="signature">--- Trần Nguyên Hoàng ---</p>
       </div>
@@ -50,6 +51,8 @@
 </template>
 
 <script>
+import { getBookApi } from "@/http/book.api";
+
 export default {
   name: "BookDetail",
   data: () => {
@@ -57,20 +60,15 @@ export default {
       bookDetail: null
     };
   },
-  mounted() {
-    this.getBookDetail();
-  },
-  methods: {
-    getBookDetail() {
-      let fakeData = {
-        title: "Where rainbow ends",
-        coverImage: null,
-        author: "Cecelina Ahern",
-        description:
-          "Eu consectetur velit Lorem id ipsum cillum sunt eiusmod nisi reprehenderit nostrud ipsum. Occaecat consequat magna irure cillum nostrud dolor quis laboris non ea. Ea adipisicing non ad cupidatat culpa ea proident officia dolor dolore minim aliquip id. Reprehenderit deserunt magna tempor aliqua adipisicing. Esse ipsum dolore cillum laboris adipisicing et reprehenderit eu elit dolore excepteur incididunt. "
-      };
-      this.bookDetail = fakeData;
-    }
+  created: async function() {
+    let bookId = this.$route.path.match(/-\w+$/)[0];
+    await getBookApi(bookId)
+      .then(response => {
+        this.bookDetail = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
 </script>

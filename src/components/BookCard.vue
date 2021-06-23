@@ -2,7 +2,7 @@
   <router-link
     :to="{
       name: 'BookDetail',
-      params: { bookId: book.id }
+      params: { route: bookRoute }
     }"
     class="card column is-one-third"
   >
@@ -11,8 +11,8 @@
         <!-- <img
           src="https://bulma.io/images/placeholders/1280x960.png"
           alt="Placeholder image"
-        />
-        <img src="@/assets/images/cover/loverosie-cover.jpg" alt="Book cover" /> -->
+        />-->
+        <img :src="bookCoverImageSource" alt="Book cover" />
       </figure>
     </div>
     <div class="card-content">
@@ -23,24 +23,21 @@
               src="https://bulma.io/images/placeholders/96x96.png"
               alt="Placeholder image"
             /> -->
-            <img
-              src="@/assets/images/author/cecelia-ahern.jpg"
-              alt="Author portrait"
-            />
+            <img :src="authorImageSource" alt="Author portrait" />
           </figure>
         </div>
         <div class="media-content">
-          <p class="title is-4">{{ book.title }}</p>
+          <p class="title is-4">{{ book.bookName }}</p>
           <p class="subtitle is-6">@{{ book.author }}</p>
         </div>
       </div>
 
       <div class="content ellipsis">
         <div>
-          <p>{{ book.description }}</p>
+          <p>{{ book.myReview }}</p>
         </div>
-        <!-- <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time> -->
+        <br />
+        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
       </div>
     </div>
   </router-link>
@@ -49,7 +46,33 @@
 <script>
 export default {
   name: "BookCard",
-  props: ["book"]
+  props: {
+    book: {
+      type: Object,
+      required: true
+    },
+    bookId: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    authorImageSource: function() {
+      return `https://firebasestorage.googleapis.com/v0/b/booksiread-14052021.appspot.com/o/images%2F${this.bookId}%2Fauthor?alt=media`;
+    },
+    bookCoverImageSource: function() {
+      return `https://firebasestorage.googleapis.com/v0/b/booksiread-14052021.appspot.com/o/images%2F${this.bookId}%2Fcover?alt=media`;
+    },
+    bookRoute: function() {
+      return (
+        (this.book.bookName + this.book.title)
+          .replace(/\W+/g, " ")
+          .split(/ |\B(?=[A-Z])/)
+          .map(word => word.toLowerCase())
+          .join("-") + this.bookId
+      );
+    }
+  }
 };
 </script>
 <style scoped>

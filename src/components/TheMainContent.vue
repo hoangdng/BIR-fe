@@ -1,7 +1,12 @@
 <template>
   <div class="main-content px-5">
     <div class="columns is-multiline is-3">
-      <BookCard v-for="(book, index) in books" :key="index" :book="book" />
+      <BookCard
+        v-for="(value, key) in books"
+        :key="key"
+        :book="value"
+        :bookId="key"
+      />
     </div>
   </div>
 </template>
