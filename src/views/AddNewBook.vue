@@ -70,6 +70,34 @@
             <b-input v-model="book.title" />
           </b-field>
         </div>
+        <div class="my-3" id="categories">
+          <b-field label="Categories">
+            <b-autocomplete
+              v-model="autocompleteInput"
+              :data="filteredDefaultCategoryArray"
+              placeholder="e.g. Romance"
+              icon="magnify"
+              clearable
+              @blur="addCategory"
+              @keyup.enter.native="addCategory"
+            >
+              <template #empty
+                >Press enter to add "{{ autocompleteInput }}" category</template
+              >
+            </b-autocomplete>
+          </b-field>
+          <b-taglist>
+            <b-tag
+              v-for="(category, index) in book.categories"
+              :key="index"
+              type="is-info"
+              closable
+              aria-close-label="Close tag"
+              @close="removeCategory(index)"
+              >{{ category }}</b-tag
+            >
+          </b-taglist>
+        </div>
       </div>
       <div class="column">
         <div class="my-3" id="book-cover-image">
@@ -162,8 +190,27 @@ export default {
         releaseYear: null,
         images: [],
         title: "",
-        myReview: ""
-      }
+        myReview: "",
+        categories: []
+      },
+      autocompleteInput: "",
+      defaultCategory: [
+        "Adventure",
+        "Art",
+        "Children’s",
+        "Cooking",
+        "History",
+        "Humor",
+        "Health",
+        "Horror",
+        "Fantasy",
+        "Romance",
+        "Science Fiction",
+        "Memoir",
+        "Self-help",
+        "Travel",
+        "Technical"
+      ]
     };
   },
   methods: {
@@ -179,6 +226,20 @@ export default {
           break;
       }
     },
+    removeCategory: function(index) {
+      this.book.categories.splice(index, 1);
+    },
+    addCategory: function() {
+      setTimeout(() => {
+        if (
+          this.autocompleteInput.trim() !== "" &&
+          this.book.categories.indexOf(this.autocompleteInput) === -1
+        ) {
+          this.book.categories.splice(0, 0, this.autocompleteInput);
+          this.autocompleteInput = "";
+        }
+      }, 80);
+    },
     saveBook: function() {
       const formData = new FormData();
       formData.append("bookName", this.book.bookName);
@@ -186,6 +247,7 @@ export default {
       formData.append("releaseYear", this.book.releaseYear);
       formData.append("title", this.book.title);
       formData.append("myReview", this.book.myReview);
+      formData.append("categories", JSON.stringify(this.book.categories));
       formData.append("images", this.book.images[0]);
       formData.append("images", this.book.images[1]);
 
@@ -198,6 +260,7 @@ export default {
       this.book.images = [];
       this.book.title = "";
       this.book.myReview = "";
+      this.book.categories = [];
     },
     backToHomePage: function() {
       this.$router.push("/");
@@ -215,6 +278,16 @@ export default {
         return URL.createObjectURL(this.book.images[1]);
       }
       return null;
+    },
+    filteredDefaultCategoryArray: function() {
+      return this.defaultCategory.filter(option => {
+        return (
+          option
+            .toString()
+            .toLowerCase()
+            .indexOf(this.autocompleteInput.toLowerCase()) >= 0
+        );
+      });
     }
   }
 };
