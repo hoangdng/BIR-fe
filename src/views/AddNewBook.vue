@@ -247,11 +247,19 @@ export default {
       formData.append("releaseYear", this.book.releaseYear);
       formData.append("title", this.book.title);
       formData.append("myReview", this.book.myReview);
-      formData.append("categories", JSON.stringify(this.book.categories));
+      this.book.categories.forEach(category =>
+        formData.append("categories[]", category)
+      );
       formData.append("images", this.book.images[0]);
       formData.append("images", this.book.images[1]);
 
-      postBookApi(formData);
+      postBookApi(formData)
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     resetInputData: function() {
       this.book.bookName = "";
