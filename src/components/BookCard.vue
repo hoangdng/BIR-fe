@@ -46,16 +46,7 @@
 <script>
 export default {
   name: "BookCard",
-  props: {
-    book: {
-      type: Object,
-      required: true
-    },
-    bookId: {
-      type: String,
-      required: true
-    }
-  },
+  props: ["book", "bookId"],
   computed: {
     authorImageSource: function() {
       return `https://firebasestorage.googleapis.com/v0/b/booksiread-14052021.appspot.com/o/images%2F${this.bookId}%2Fauthor?alt=media`;
@@ -65,11 +56,13 @@ export default {
     },
     bookRoute: function() {
       return (
+        this.bookId +
+        "/" +
         (this.book.bookName + this.book.title)
           .replace(/\W+/g, " ")
           .split(/ |\B(?=[A-Z])/)
           .map(word => word.toLowerCase())
-          .join("-") + this.bookId
+          .join("-")
       );
     }
   }
