@@ -57,12 +57,12 @@ export default {
   name: "BookDetail",
   data: () => {
     return {
-      bookDetail: null
+      bookDetail: {}
     };
   },
-  created: async function() {
-    let bookId = this.$route.path.match(/-\w+$/)[0];
-    await getBookApi(bookId)
+  created: function() {
+    let bookId = this.$route.path.match(/(?<=book\/)(-[\w-]+)/)[0];
+    getBookApi(bookId)
       .then(response => {
         this.bookDetail = response.data;
       })
