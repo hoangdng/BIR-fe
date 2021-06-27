@@ -148,7 +148,7 @@
     </div>
     <div class="px-6 has-text-left" id="my-review">
       <b-field label="My review">
-        <b-input v-model="book.myReview" maxlength="500" type="textarea" />
+        <b-input v-model="book.myReview" maxlength="2000" type="textarea" />
       </b-field>
     </div>
     <div class="has-text-right px-6 mb-5">
