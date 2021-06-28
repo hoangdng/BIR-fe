@@ -1,7 +1,9 @@
 import HttpClient from "./httpClient";
 
 const END_POINT = "/books";
-const myBookClient = new HttpClient("http://localhost:1234/");
+const myBookClient = new HttpClient(
+  "https://books-i-read-backend.herokuapp.com/"
+);
 
 const postBook = book => myBookClient.httpClient.post(END_POINT, book);
 
