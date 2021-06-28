@@ -61,4 +61,8 @@
   margin-left: 30px;
   font-family: "Lobster", cursive;
 }
+.navbar-brand:hover {
+  transform: scale(1.02);
+  transition: all 0.34s;
+}
 </style>
